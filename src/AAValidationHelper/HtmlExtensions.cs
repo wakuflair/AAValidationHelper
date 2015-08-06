@@ -10,6 +10,15 @@ namespace AAValidationHelper
 {
     public static class HtmlExtensions
     {
+        /// <summary>
+        /// HTML Helper extension method to generate AngularJS validation directives.
+        /// </summary>
+        /// <typeparam name="TModel"></typeparam>
+        /// <typeparam name="TProperty"></typeparam>
+        /// <param name="htmlHelper">html helper</param>
+        /// <param name="expression">expression</param>
+        /// <param name="htmlAttributes">additional html attributes</param>
+        /// <returns></returns>
         public static MvcHtmlString NgValidationFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TProperty>> expression,
             object htmlAttributes = null)
@@ -30,6 +39,18 @@ namespace AAValidationHelper
             return " " + string.Join(" ", dict.Select(kv => string.Format("{0}=\"{1}\"", kv.Key, kv.Value)));
         }
 
+        /// <summary>
+        /// HTML Helper extension method to generate AngularJS ngMessages html code.
+        /// </summary>
+        /// <typeparam name="TModel"></typeparam>
+        /// <typeparam name="TProperty"></typeparam>
+        /// <param name="htmlHelper">html helper</param>
+        /// <param name="templateName">error template file name</param>
+        /// <param name="formName">name of form being validated</param>
+        /// <param name="ctrlName">name of control being validated</param>
+        /// <param name="expression">expression</param>
+        /// <param name="htmlAttributes">additional html attributes</param>
+        /// <returns>ngMessages html code</returns>
         public static MvcHtmlString NgMessageFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
             string templateName,
             string formName,
