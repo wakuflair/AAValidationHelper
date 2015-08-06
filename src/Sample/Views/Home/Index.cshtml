@@ -1,0 +1,61 @@
+﻿@using AAValidationHelper
+@model Sample.Models.Person
+
+<html ng-app="myApp">
+<head>
+    <title>AAValidationHelper Sample</title>
+</head>
+<body>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/angular-messages.min.js"></script>
+    <script type="text/javascript">
+            var module = angular.module('myApp', ['ngMessages']);
+
+            var equalTo = function() {
+                return {
+                    require: "ngModel",
+                    scope: {
+                        otherModelValue: "=equalTo"
+                    },
+                    link: function(scope, element, attributes, ngModel) {
+                        ngModel.$validators.equalTo = function(modelValue) {
+                            return modelValue === scope.otherModelValue;
+                        };
+
+                        scope.$watch("otherModelValue", function() {
+                            ngModel.$validate();
+                        });
+                    }
+                };
+            };
+
+            module.directive("equalTo", equalTo);
+    </script>
+    <form name="form">
+        @Html.LabelFor(m => m.Name)
+        <input type="text" name="username" ng-model="user.name" @Html.NgValidationFor(m => m.Name) />
+        @Html.NgMessageFor("ErrorTemplate", "form", "username", m => m.Name)
+        <br />
+        @Html.LabelFor(m => m.Age)
+        <input type="number" name="userage" ng-model="user.age" @Html.NgValidationFor(m => m.Age) />
+        @Html.NgMessageFor("ErrorTemplate", "form", "userage", m => m.Age)
+        <br />
+        @Html.LabelFor(m => m.EmailAddress)
+        <input type="email" name="email" ng-model="user.email" @Html.NgValidationFor(m => m.EmailAddress) />
+        @Html.NgMessageFor("ErrorTemplate", "form", "email", m => m.EmailAddress)
+        <br />
+        @Html.LabelFor(m => m.Id)
+        <input type="text" name="id" ng-model="user.id" @Html.NgValidationFor(m => m.Id) />
+        @Html.NgMessageFor("ErrorTemplate", "form", "id", m => m.Id)
+        <br />
+        @Html.LabelFor(m => m.Password)
+        <input type="password" name="password" ng-model="user.password" @Html.NgValidationFor(m => m.Password) />
+        @Html.NgMessageFor("ErrorTemplate", "form", "password", m => m.Password)
+        <br />
+        @Html.LabelFor(m => m.ConfirmPassword)
+        <input type="password" name="confirmPassword" ng-model="user.confirmPassword" @Html.NgValidationFor(m => m.ConfirmPassword, new { equal_to = "user.password" }) />
+        @Html.NgMessageFor("ErrorTemplate", "form", "confirmPassword", m => m.ConfirmPassword)
+        <br />
+    </form>
+</body>
+</html>

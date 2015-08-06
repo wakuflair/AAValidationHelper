@@ -1,0 +1,8 @@
+﻿@model global::AAValidationHelper.ErrorMessageModel
+
+<div style="color: red" ng-messages="@(Model.FormName).@(Model.CtrlName).$error" ng-show="@(Model.FormName).@(Model.CtrlName).$dirty && @(Model.FormName).@(Model.CtrlName).$invalid" @Html.Raw(@Model.HtmlAttributes)>
+    @foreach (var kv in Model.ErrorMessages)
+    {
+        <small ng-message="@kv.Key">@kv.Value</small>
+    }
+</div>
