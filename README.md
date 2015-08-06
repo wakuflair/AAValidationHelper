@@ -49,3 +49,6 @@ AAValidationHelper is a library that helps you easily writing validation html co
         <br />
     </form>
     ```
+
+## About Sample
+There is a sample web project using **AAValidationHelper** in src/Sample folder, it demostrates many uses, don't miss it.
