@@ -6,7 +6,7 @@ AAValidationHelper is a library that helps you easily writing validation html co
 2. Add AngularJS and ngMessages module. (In order to use ngMessages, don't forget to attach the ngMessages module to your application module as a dependency.)
 1. Using nuget to install **AAValidationHelper**.
 
-	PM> Install-Package AAValidationHelper
+    ``` PM> Install-Package AAValidationHelper ```
 1. Create a .cshtml(for example: *ErrorTemplate.cshtml*) file in the Views/Shared folder of your project. 
     This file is used to generate ngMessages html code. You can use any valid HTML and Razor syntax to define your own error template. For example:
 
