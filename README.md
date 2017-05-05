@@ -1,4 +1,6 @@
 # AAValidationHelper
+![](./images/demo.gif)
+
 AAValidationHelper is a library that helps you easily writing validation html code in ASP.NET MVC + AngularJS. It uses DataAnnotations to do validation on client. This library is inspired by NgVal.
 
 ## Getting Started
@@ -49,6 +51,17 @@ AAValidationHelper is a library that helps you easily writing validation html co
         <br />
     </form>
     ```
+
+## Supported DataAnnotations
+
+* Required
+* MinLength
+* MaxLength
+* Range
+* EmailAddress
+* RegularExpression
+* Compare(need custom directive, see sample source)
+
 
 ## About Sample
 There is a sample web project using **AAValidationHelper** in src/Sample folder, it demostrates many uses, don't miss it.
