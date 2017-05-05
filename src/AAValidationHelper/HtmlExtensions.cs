@@ -18,8 +18,8 @@ namespace AAValidationHelper
         /// <param name="htmlHelper">html helper</param>
         /// <param name="expression">expression</param>
         /// <param name="formName">name of form being validated</param>
-        /// <param name="ctrlName">name of control being validated. Default: the name of the Property with first letter lowered</param>
-        /// <param name="templateName">error template file name.Default: "ErrorTemplate"</param>
+        /// <param name="ctrlName">name of control being validated. if null, the name of the Property with first letter lowered will be used</param>
+        /// <param name="templateName">error template file name</param>
         /// <param name="htmlAttributes">additional html attributes</param>
         /// <returns>ngMessages html code</returns>
         public static MvcHtmlString NgMessageFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
@@ -68,7 +68,7 @@ namespace AAValidationHelper
                 return string.Empty;
             }
             var dict = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
-            return " " + string.Join(" ", dict.Select(kv => string.Format("{0}=\"{1}\"", kv.Key, kv.Value)));
+            return " " + string.Join(" ", dict.Select(kv => $"{kv.Key}=\"{kv.Value}\""));
         }
 
         private static IEnumerable<ModelClientValidationRule> GetValidationRules<TModel, TProperty>(Expression<Func<TModel, TProperty>> expression)
