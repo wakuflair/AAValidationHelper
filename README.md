@@ -12,7 +12,7 @@ AAValidationHelper is a library that helps you easily writing validation html co
 1. Create a .cshtml(for example: *ErrorTemplate.cshtml*) file in the Views/Shared folder of your project. 
     This file is used to generate ngMessages html code. You can use any valid HTML and Razor syntax to define your own error template. For example:
 
-    ``` C#
+    ``` html
     @model global::AAValidationHelper.ErrorMessageModel
 
     <div style="color: red" ng-messages="@(Model.FormName).@(Model.CtrlName).$error" ng-show="@(Model.FormName).@(Model.CtrlName).$dirty && @(Model.FormName).@(Model.CtrlName).$invalid" @Html.Raw(@Model.HtmlAttributes)>
