@@ -11,6 +11,38 @@ namespace AAValidationHelper
     public static class HtmlExtensions
     {
         /// <summary>
+        /// HTML Helper extension method to generate AngularJS ngMessages html code.
+        /// </summary>
+        /// <typeparam name="TModel"></typeparam>
+        /// <typeparam name="TProperty"></typeparam>
+        /// <param name="htmlHelper">html helper</param>
+        /// <param name="expression">expression</param>
+        /// <param name="formName">name of form being validated</param>
+        /// <param name="ctrlName">name of control being validated. Default: the name of the Property with first letter lowered</param>
+        /// <param name="templateName">error template file name.Default: "ErrorTemplate"</param>
+        /// <param name="htmlAttributes">additional html attributes</param>
+        /// <returns>ngMessages html code</returns>
+        public static MvcHtmlString NgMessageFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TProperty>> expression,
+            string formName,
+            string ctrlName = null,
+            object htmlAttributes = null,
+            string templateName = "ErrorTemplate"
+            )
+        {
+            var validationRules = GetValidationRules(expression);
+            var dictErrorMessage = GetNgMessages(validationRules);
+
+            return htmlHelper.Partial(templateName, new ErrorMessageModel
+            {
+                FormName = formName,
+                CtrlName = ctrlName ?? ExpressionHelper.GetExpressionText(expression).LowerFirstLetter(),
+                ErrorMessages = dictErrorMessage,
+                HtmlAttributes = htmlHelper.Raw(GetHtmlAttributesString(htmlAttributes)).ToHtmlString(),
+            });
+        }
+
+        /// <summary>
         /// HTML Helper extension method to generate AngularJS validation directives.
         /// </summary>
         /// <typeparam name="TModel"></typeparam>
@@ -37,38 +69,6 @@ namespace AAValidationHelper
             }
             var dict = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
             return " " + string.Join(" ", dict.Select(kv => string.Format("{0}=\"{1}\"", kv.Key, kv.Value)));
-        }
-
-        /// <summary>
-        /// HTML Helper extension method to generate AngularJS ngMessages html code.
-        /// </summary>
-        /// <typeparam name="TModel"></typeparam>
-        /// <typeparam name="TProperty"></typeparam>
-        /// <param name="htmlHelper">html helper</param>
-        /// <param name="templateName">error template file name</param>
-        /// <param name="formName">name of form being validated</param>
-        /// <param name="ctrlName">name of control being validated</param>
-        /// <param name="expression">expression</param>
-        /// <param name="htmlAttributes">additional html attributes</param>
-        /// <returns>ngMessages html code</returns>
-        public static MvcHtmlString NgMessageFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
-            string templateName,
-            string formName,
-            string ctrlName,
-            Expression<Func<TModel, TProperty>> expression,
-            object htmlAttributes = null
-            )
-        {
-            var validationRules = GetValidationRules(expression);
-            var dictErrorMessage = GetNgMessages(validationRules);
-
-            return htmlHelper.Partial(templateName, new ErrorMessageModel
-            {
-                FormName = formName,
-                CtrlName = ctrlName,
-                ErrorMessages = dictErrorMessage,
-                HtmlAttributes = htmlHelper.Raw(GetHtmlAttributesString(htmlAttributes)).ToHtmlString(),
-            });
         }
 
         private static IEnumerable<ModelClientValidationRule> GetValidationRules<TModel, TProperty>(Expression<Func<TModel, TProperty>> expression)
