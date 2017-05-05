@@ -39,16 +39,18 @@ AAValidationHelper is a library that helps you easily writing validation html co
     ```
 1. Now your can use AAValidationHelper's html extension methods(```NgValidationFor``` and ```NgMessageFor```) to easily write validation html code:
 
-    ``` C#
-    <form name="form">
-        @Html.LabelFor(m => m.Name)
-        <input type="text" name="username" ng-model="user.name" @Html.NgValidationFor(m => m.Name) />
-        @Html.NgMessageFor("ErrorTemplate", "form", "username", m => m.Name)
-        <br />
-        @Html.LabelFor(m => m.Age)
-        <input type="number" name="userage" ng-model="user.age" @Html.NgValidationFor(m => m.Age) />
-        @Html.NgMessageFor("ErrorTemplate", "form", "userage", m => m.Age)
-        <br />
+    ``` html
+    <form name="userForm">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name)
+            <input type="text" name="name" class="form-control" ng-model="user.name" @Html.NgValidationFor(m => m.Name) />
+            @Html.NgMessageFor(m => m.Name, "userForm")
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Age)
+            <input type="number" name="age" class="form-control" ng-model="user.age" @Html.NgValidationFor(m => m.Age) />
+            @Html.NgMessageFor(m => m.Age, "userForm")
+        </div>
     </form>
     ```
 
