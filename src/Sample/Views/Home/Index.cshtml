@@ -31,38 +31,38 @@
         });
     </script>
     <div style="width: 300px; padding: 10px;">
-        <form name="form">
+        <form name="userForm">
             <div class="form-group">
                 @Html.LabelFor(m => m.Name)
                 <input type="text" name="name" class="form-control" ng-model="user.name" @Html.NgValidationFor(m => m.Name) />
-                @Html.NgMessageFor(m => m.Name, "form")
+                @Html.NgMessageFor(m => m.Name, "userForm")
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Age)
                 <input type="number" name="age" class="form-control" ng-model="user.age" @Html.NgValidationFor(m => m.Age) />
-                @Html.NgMessageFor(m => m.Age, "form")
+                @Html.NgMessageFor(m => m.Age, "userForm")
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.EmailAddress)
                 <input type="email" name="emailAddress" class="form-control" ng-model="user.email" @Html.NgValidationFor(m => m.EmailAddress) />
-                @Html.NgMessageFor(m => m.EmailAddress, "form")
+                @Html.NgMessageFor(m => m.EmailAddress, "userForm")
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Id)
                 <input type="text" name="id" class="form-control" ng-model="user.id" @Html.NgValidationFor(m => m.Id) />
-                @Html.NgMessageFor(m => m.Id, "form")
+                @Html.NgMessageFor(m => m.Id, "userForm")
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Password)
                 <input type="password" name="password" class="form-control" ng-model="user.password" @Html.NgValidationFor(m => m.Password) />
-                @Html.NgMessageFor(m => m.Password, "form")
+                @Html.NgMessageFor(m => m.Password, "userForm")
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.ConfirmPassword)
                 <input type="password" name="confirmPassword" class="form-control" ng-model="user.confirmPassword" @Html.NgValidationFor(m => m.ConfirmPassword, new { equal_to = "user.password" }) />
-                @Html.NgMessageFor(m => m.ConfirmPassword, "form")
+                @Html.NgMessageFor(m => m.ConfirmPassword, "userForm")
             </div>
-            <button type="submit" class="btn btn-default" ng-disabled="form.$invalid">Submit</button>
+            <button type="submit" class="btn btn-default" ng-disabled="userForm.$invalid">Submit</button>
         </form>
     </div>
 </body>
