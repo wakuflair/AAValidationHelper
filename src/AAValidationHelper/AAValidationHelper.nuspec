@@ -2,10 +2,15 @@
 <package >
     <metadata>
         <id>AAValidationHelper</id>
-        <version>1.0.3</version>
-        <authors>WAKU</authors>
+        <title>AAValidationHelper</title>
+        <version>1.1</version>
+        <authors>wakuflair</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>AAValidationHelper is a library that helps you easily writing validation html code in ASP.NET MVC + AngularJS. It uses DataAnnotations to do validation both server and client. This library is inspired by NgVal.</description>
         <projectUrl>https://github.com/wakuflair/AAValidationHelper</projectUrl>
+        <tags>asp.net mvc AngularJS validation</tags>
+        <releaseNotes>
+        1.1 version changed the parameters's order of the NgMessageFor method, and make some parameters optional. So after upgrading from previous version, see the XML comments of the NgMessageFor.
+        </releaseNotes>
     </metadata>
 </package>
